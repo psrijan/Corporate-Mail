@@ -1,0 +1,26 @@
+app:
+ name: wish-server
+spring:
+  profiles.active: dev
+server:
+  port: 9081
+management:
+  port: 9082
+  security:
+    enabled: false
+jwt:
+  header: Authorization
+  expires_in: 10000
+  secret: srijan
+jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      INDENT_OUTPUT: false
+excel:
+  word: C:\\util\
+  sample: C:\\util\sample\sample.xlsx
+initial:
+  data: N
+logging:
+  level:
+    com.srijan.springfundamentals: DEBUG

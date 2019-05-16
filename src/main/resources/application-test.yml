@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: test
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_basic_word?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: bausab1
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: MYSQL
+    show_sql: false
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+      org.hibernate.envers.audit_table_suffix: _history
