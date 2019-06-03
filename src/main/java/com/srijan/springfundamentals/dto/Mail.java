@@ -4,10 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
 public class Mail {
+
     private String mailFrom;
 
     private String mailTo;
@@ -20,12 +23,14 @@ public class Mail {
 
     private String mailContent;
 
-    private String templateName;
-
     private String contentType;
 
+    private List< Object> attachments;
+
+    private Map< String, Object> model;
+
     public Mail() {
-        contentType = "text/html";
+        contentType = "text/plain";
     }
 
     public String getContentType() {
@@ -38,14 +43,6 @@ public class Mail {
 
     public String getMailBcc() {
         return mailBcc;
-    }
-
-    public String getTemplateName() {
-        return templateName;
-    }
-
-    public void setTemplateName(String templateName) {
-        this.templateName = templateName;
     }
 
     public void setMailBcc(String mailBcc) {
@@ -96,16 +93,19 @@ public class Mail {
         this.mailContent = mailContent;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder lBuilder = new StringBuilder();
-        lBuilder.append("Mail From:- ").append(getMailFrom());
-        lBuilder.append("Mail To:- ").append(getMailTo());
-        lBuilder.append("Mail Cc:- ").append(getMailCc());
-        lBuilder.append("Mail Bcc:- ").append(getMailBcc());
-        lBuilder.append("Mail Subject:- ").append(getMailSubject());
-        lBuilder.append("Mail Send Date:- ").append(getMailSendDate());
-        lBuilder.append("Mail Content:- ").append(getMailContent());
-        return lBuilder.toString();
+    public List< Object> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List< Object> attachments) {
+        this.attachments = attachments;
+    }
+
+    public Map< String, Object> getModel() {
+        return model;
+    }
+
+    public void setModel(Map< String, Object> model) {
+        this.model = model;
     }
 }

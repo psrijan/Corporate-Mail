@@ -12,9 +12,13 @@ spring:
     show_sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate.cache.use_second_level_cache: false
       hibernate.cache.use_query_cache: false
       hibernate.generate_statistics: false
       org.hibernate.envers.audit_table_suffix: _history
+
+
+schedule:
+  minute: 3600000 #hour

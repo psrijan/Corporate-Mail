@@ -6,11 +6,11 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "APPLICATION_USER")
 @Getter
 @Setter
-@Entity
-@Table(name = "FRIEND")
-public class Friend {
+public class ApplicationUser {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -27,17 +27,10 @@ public class Friend {
     @Basic(optional = false)
     @Column(name = "ACTIVE", nullable = false)
     private char active;
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="BIRTHDAY" , nullable = false)
-    private Date birthday;
-    @Column(name = "RELATION" , nullable = false)
-    private String relation;
-
-    public Friend() {
-
-    }
-
-    public Friend(Long id) {
-        this.id = id;
-    }
+    @Basic(optional = false)
+    @Column(name = "PASSWORD", nullable = false, length = 200)
+    private String password;
+    @Basic(optional = false)
+    @Column(name = "USERNAME", nullable = false, length = 50)
+    private String username;
 }

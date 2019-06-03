@@ -9,8 +9,8 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "WISH_LOG")
-public class WishLog {
+@Table(name = "ALERT_LOG")
+public class AlertLog {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +25,13 @@ public class WishLog {
     @Basic(optional = false)
     @Column(name = "WISHED" , nullable = false , length = 1)
     private Character wished;
+    @JoinColumn(referencedColumnName = "ID" ,name = "APPLICATION_USER_ID" , nullable = false)
+    @ManyToOne(optional = false)
+    private ApplicationUser applicationUser;
+    @JoinColumn(referencedColumnName = "ID" , name = "FRIEND_ID" , nullable = false)
+    @ManyToOne
+    private Friend friend;
+    @Column(name = "YEAR" , nullable = false)
+    private String year;
+
 }
