@@ -1,4 +1,4 @@
-package com.srijan.springfundamentals.service;
+package com.srijan.springfundamentals.scheduleservice;
 
 
 import com.srijan.springfundamentals.dto.EmailDetail;

@@ -1,4 +1,4 @@
-package com.srijan.springfundamentals.service;
+package com.srijan.springfundamentals.scheduleservice;
 
 import com.srijan.springfundamentals.dto.EmailDetail;
 import com.srijan.springfundamentals.dto.Occassion;
@@ -7,11 +7,10 @@ import com.srijan.springfundamentals.entities.ApplicationUser;
 import com.srijan.springfundamentals.entities.Friend;
 import com.srijan.springfundamentals.others.DateUtil;
 import com.srijan.springfundamentals.repository.AlertLogRepository;
-import com.srijan.springfundamentals.repository.ApplicationUserRepository;
+import com.srijan.springfundamentals.repository.UserRepository;
 import com.srijan.springfundamentals.repository.FriendRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -29,7 +28,7 @@ public class BirthdayAlertService {
     private FriendRepository friendRepository;
 
     @Autowired
-    private ApplicationUserRepository applicationUserRepository;
+    private UserRepository applicationUserRepository;
 
     @Autowired
     private EmailService emailService;
@@ -37,7 +36,7 @@ public class BirthdayAlertService {
     @Autowired
     private AlertLogRepository alertLogRepository;
 
-    @Scheduled(fixedRate = 5000)
+//    @Scheduled(fixedRate = 5000)
     public void birthdayAlert() {
         List<Friend> friendList = friendRepository.findAll();
         List<Friend> friendTomBirthdayList = friendList.stream().filter(friend -> DateUtil.checkBirthdayTomorrow(friend.getBirthday())).collect(Collectors.toList());

@@ -4,13 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "APPLICATION_USER")
 @Getter
 @Setter
-public class ApplicationUser {
+public class ApplicationUser extends Auditable<ApplicationUser> {
 
     private static final long serialVersionUID = 1L;
     @Id

@@ -1,4 +1,4 @@
-package com.srijan.springfundamentals.service;
+package com.srijan.springfundamentals.scheduleservice;
 
 
 import com.srijan.springfundamentals.dto.EmailDetail;
@@ -9,7 +9,7 @@ import com.srijan.springfundamentals.entities.Festival;
 import com.srijan.springfundamentals.entities.Friend;
 import com.srijan.springfundamentals.others.DateUtil;
 import com.srijan.springfundamentals.repository.AlertLogRepository;
-import com.srijan.springfundamentals.repository.ApplicationUserRepository;
+import com.srijan.springfundamentals.repository.UserRepository;
 import com.srijan.springfundamentals.repository.FestivalRepository;
 import com.srijan.springfundamentals.repository.FriendRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class FestivalWishService {
     private AlertLogRepository wishLogRepository;
 
     @Autowired
-    private ApplicationUserRepository applicationUserRepository;
+    private UserRepository applicationUserRepository;
 
     @Autowired
     private EmailService emailService;

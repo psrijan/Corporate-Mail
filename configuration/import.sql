@@ -1323,7 +1323,7 @@ INSERT INTO word (definition,name) VALUES
 ('sleeping sluggish lethargic dormant        ','torpid')
 ,('twisting force causing rotation      ','torque')
 ,('devious/not straightforward        ','tortuous')
-,('person who worries others to buy smth to use his service ','tout')
+,('person who worries others to buy smth to use his scheduleservice ','tout')
 ,('easily controlled or guided        ','tractable')
 ,('break go beyond (a limit)       ','transgress')
 ,('temporary fleeting          ','transient')

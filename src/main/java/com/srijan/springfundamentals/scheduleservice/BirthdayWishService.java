@@ -1,4 +1,4 @@
-package com.srijan.springfundamentals.service;
+package com.srijan.springfundamentals.scheduleservice;
 
 import com.srijan.springfundamentals.dto.EmailDetail;
 import com.srijan.springfundamentals.dto.Occassion;
@@ -8,12 +8,11 @@ import com.srijan.springfundamentals.entities.Festival;
 import com.srijan.springfundamentals.entities.Friend;
 import com.srijan.springfundamentals.others.DateUtil;
 import com.srijan.springfundamentals.repository.AlertLogRepository;
-import com.srijan.springfundamentals.repository.ApplicationUserRepository;
+import com.srijan.springfundamentals.repository.UserRepository;
 import com.srijan.springfundamentals.repository.FestivalRepository;
 import com.srijan.springfundamentals.repository.FriendRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -28,7 +27,7 @@ public class BirthdayWishService {
     private EmailService emailService;
 
     @Autowired
-    private ApplicationUserRepository applicationUserRepository;
+    private UserRepository applicationUserRepository;
 
     @Autowired
     private FriendRepository friendRepository;
@@ -39,7 +38,7 @@ public class BirthdayWishService {
     @Autowired
     private FestivalRepository festivalRepository;
 
-    @Scheduled(fixedRate = 10000)
+//    @Scheduled(fixedRate = 10000)
     public void sendWishes() {
         List<Friend> friendList = friendRepository.findAll();
         ApplicationUser applicationUser = applicationUserRepository.findById(1l).get();

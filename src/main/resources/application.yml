@@ -2,6 +2,8 @@ app:
  name: wish-server
 spring:
   profiles.active: dev
+  jackson:
+    default-property-inclusion: non_null
 server:
   port: 9081
 management:
@@ -24,3 +26,6 @@ initial:
 logging:
   level:
     com.srijan.springfundamentals: DEBUG
+swagger:
+  resourcePackage: com.srijan.springfundamentals.controller
+  version: 0.0
