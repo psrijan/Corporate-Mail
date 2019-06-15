@@ -29,4 +29,8 @@ public class Festival {
 
     @Column(name = "SUBJECT" , nullable = false , length = 2000)
     private String subject;
+
+    @ManyToOne()
+    @JoinColumn(name = "FEST_GROUP_ID" , nullable = false , referencedColumnName = "ID" )
+    private FestivalGroup festivalGroup;
 }

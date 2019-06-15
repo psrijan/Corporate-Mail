@@ -22,6 +22,7 @@ public class AppConstants {
         String AUTH_URL_REGEX = ".*/auth[/]{0,1}";
         String TOTP_REGEX = ".*/auth/verify/2fa[/]{0,1}";
     }
+
     public interface ApplicationCodes {
         String SUCCESS = "0";
         String TOTP_REQUIRED = "-1";

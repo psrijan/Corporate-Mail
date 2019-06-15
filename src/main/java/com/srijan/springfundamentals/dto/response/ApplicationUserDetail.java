@@ -1,4 +1,4 @@
-package com.srijan.springfundamentals.dto.server;
+package com.srijan.springfundamentals.dto.response;
 
 import com.srijan.springfundamentals.dto.ModelBase;
 import lombok.Getter;

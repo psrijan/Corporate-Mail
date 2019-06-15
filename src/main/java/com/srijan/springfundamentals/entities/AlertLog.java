@@ -30,7 +30,7 @@ public class AlertLog {
     private ApplicationUser applicationUser;
     @JoinColumn(referencedColumnName = "ID" , name = "FRIEND_ID" , nullable = false)
     @ManyToOne
-    private Friend friend;
+    private Client friend;
     @Column(name = "YEAR" , nullable = false)
     private String year;
 

@@ -5,7 +5,7 @@ import com.srijan.springfundamentals.dto.Occassion;
 import com.srijan.springfundamentals.entities.AlertLog;
 import com.srijan.springfundamentals.entities.ApplicationUser;
 import com.srijan.springfundamentals.entities.Festival;
-import com.srijan.springfundamentals.entities.Friend;
+import com.srijan.springfundamentals.entities.Client;
 import com.srijan.springfundamentals.others.DateUtil;
 import com.srijan.springfundamentals.repository.AlertLogRepository;
 import com.srijan.springfundamentals.repository.UserRepository;
@@ -40,7 +40,7 @@ public class BirthdayWishService {
 
 //    @Scheduled(fixedRate = 10000)
     public void sendWishes() {
-        List<Friend> friendList = friendRepository.findAll();
+        List<Client> friendList = friendRepository.findAll();
         ApplicationUser applicationUser = applicationUserRepository.findById(1l).get();
         Festival birthdayFestival = festivalRepository.getFestivalByCode(Occassion.BIRTHDAY.toString()).get();
 

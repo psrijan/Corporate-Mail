@@ -4,7 +4,7 @@ import com.srijan.springfundamentals.dto.request.user.AddUserRequest;
 import com.srijan.springfundamentals.dto.request.user.ChangeUserStatusRequest;
 import com.srijan.springfundamentals.dto.request.user.UpdateUserRequest;
 import com.srijan.springfundamentals.dto.response.GenericResponse;
-import com.srijan.springfundamentals.dto.server.ApplicationUserDetail;
+import com.srijan.springfundamentals.dto.response.ApplicationUserDetail;
 import com.srijan.springfundamentals.dto.server.ChangeUserStatus;
 import com.srijan.springfundamentals.service.UserService;
 import lombok.extern.slf4j.Slf4j;

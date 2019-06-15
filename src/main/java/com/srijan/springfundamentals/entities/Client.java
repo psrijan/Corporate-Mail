@@ -9,8 +9,8 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "FRIEND")
-public class Friend {
+@Table(name = "CLIENT")
+public class Client {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -32,12 +32,15 @@ public class Friend {
     private Date birthday;
     @Column(name = "RELATION" , nullable = false)
     private String relation;
+    @JoinColumn(name = "PROFILE_ID")
+    @ManyToOne (optional = false)
+    private Profile profile;
 
-    public Friend() {
+    public Client() {
 
     }
 
-    public Friend(Long id) {
+    public Client(Long id) {
         this.id = id;
     }
 }

@@ -30,14 +30,14 @@ public class MailMapper {
 
         if (emailDetail.getOccasion() == Occassion.BIRTHDAYALERT) {
             model.put(AppConstants.MailConstants.SUBJECT_TAG, emailDetail.getSubject() + " " + emailDetail.getData());
-            model.put(AppConstants.MailConstants.APPLICATION_NAME, "Friend Wish");
+            model.put(AppConstants.MailConstants.APPLICATION_NAME, "Client Wish");
             model.put(AppConstants.MailConstants.SENDER_NAME, "Birthday Alert Server");
             model.put(AppConstants.MailConstants.EVENT_NAME, emailDetail.getEventName());
             model.put(AppConstants.MailConstants.BIRTHDAY_OF, emailDetail.getData());
             model.put(AppConstants.MailConstants.THEME_COLOR, "#fafa21");
         } else {
             model.put(AppConstants.MailConstants.SUBJECT_TAG, emailDetail.getSubject() + " " + emailDetail.getReceiverName() + "!!!");
-            model.put(AppConstants.MailConstants.APPLICATION_NAME, "Friend Wish");
+            model.put(AppConstants.MailConstants.APPLICATION_NAME, "Client Wish");
             model.put(AppConstants.MailConstants.THEME_COLOR, "#fa123f");
             model.put(AppConstants.MailConstants.DATE, sdf.format(new Date()));
             model.put(AppConstants.MailConstants.EVENT_NAME, emailDetail.getEventName());

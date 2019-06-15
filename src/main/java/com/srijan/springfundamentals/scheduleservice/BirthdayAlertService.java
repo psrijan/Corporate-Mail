@@ -4,7 +4,7 @@ import com.srijan.springfundamentals.dto.EmailDetail;
 import com.srijan.springfundamentals.dto.Occassion;
 import com.srijan.springfundamentals.entities.AlertLog;
 import com.srijan.springfundamentals.entities.ApplicationUser;
-import com.srijan.springfundamentals.entities.Friend;
+import com.srijan.springfundamentals.entities.Client;
 import com.srijan.springfundamentals.others.DateUtil;
 import com.srijan.springfundamentals.repository.AlertLogRepository;
 import com.srijan.springfundamentals.repository.UserRepository;
@@ -38,8 +38,8 @@ public class BirthdayAlertService {
 
 //    @Scheduled(fixedRate = 5000)
     public void birthdayAlert() {
-        List<Friend> friendList = friendRepository.findAll();
-        List<Friend> friendTomBirthdayList = friendList.stream().filter(friend -> DateUtil.checkBirthdayTomorrow(friend.getBirthday())).collect(Collectors.toList());
+        List<Client> friendList = friendRepository.findAll();
+        List<Client> friendTomBirthdayList = friendList.stream().filter(friend -> DateUtil.checkBirthdayTomorrow(friend.getBirthday())).collect(Collectors.toList());
         ApplicationUser applicationUser = applicationUserRepository.findById(1l).get();
 
         friendTomBirthdayList.forEach(friend -> {

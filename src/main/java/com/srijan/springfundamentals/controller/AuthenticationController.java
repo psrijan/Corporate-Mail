@@ -2,7 +2,6 @@ package com.srijan.springfundamentals.controller;
 
 import com.srijan.springfundamentals.dto.request.AuthenticationRequest;
 import com.srijan.springfundamentals.dto.response.AuthenticationResponse;
-import com.srijan.springfundamentals.dto.response.SuccessResponse;
 import com.srijan.springfundamentals.dto.server.AuthenticationDetail;
 import com.srijan.springfundamentals.service.AuthenticationService;
 import com.srijan.springfundamentals.util.ObjectMapper;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.srijan.springfundamentals.constants.AppConstants.SecurityConstants;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 @RequestMapping(path = "/auth")
 @RestController

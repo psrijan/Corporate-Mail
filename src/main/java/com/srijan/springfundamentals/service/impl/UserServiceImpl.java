@@ -4,7 +4,7 @@ package com.srijan.springfundamentals.service.impl;
 import com.srijan.springfundamentals.dto.request.user.AddUserRequest;
 import com.srijan.springfundamentals.dto.request.user.UpdateUserRequest;
 import com.srijan.springfundamentals.dto.response.GenericResponse;
-import com.srijan.springfundamentals.dto.server.ApplicationUserDetail;
+import com.srijan.springfundamentals.dto.response.ApplicationUserDetail;
 import com.srijan.springfundamentals.dto.server.ChangeUserStatus;
 import com.srijan.springfundamentals.entities.ApplicationUser;
 import com.srijan.springfundamentals.mapper.UserMapper;
