@@ -2,17 +2,17 @@ spring:
   profiles:
     active: prod
   datasource:
-    driverClassName: com.mysql.jdbc.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/birthday?useUnicode=true&characterEncoding=utf8
-    username: root
-    password: bausab1
+    username: srijan
+    password: password
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: MYSQL
     show_sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       hibernate.cache.use_second_level_cache: false
       hibernate.cache.use_query_cache: false

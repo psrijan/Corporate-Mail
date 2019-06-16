@@ -30,4 +30,11 @@ public class Service {
     @Column(name = "ACTIVE")
     private char active;
 
+    public Service() {
+
+    }
+    public Service(Long id) {
+        this.id=id;
+    }
+
 }
