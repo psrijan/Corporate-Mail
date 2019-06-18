@@ -32,4 +32,7 @@ public class ApplicationUser extends Auditable<ApplicationUser> {
     @Basic(optional = false)
     @Column(name = "USERNAME", nullable = false, length = 50)
     private String username;
+
+
+
 }

@@ -17,4 +17,5 @@ public interface FestivalRepository extends JpaRepository<Festival, Long> {
 
     Optional<Festival> getFestivalByCode(String code);
 
+
 }

@@ -5,7 +5,6 @@ import com.srijan.springfundamentals.dto.response.FestivalGroupInfo;
 import com.srijan.springfundamentals.dto.response.ProfileDetail;
 import com.srijan.springfundamentals.dto.response.ServiceInfo;
 import com.srijan.springfundamentals.dto.server.UpdateProfileDetail;
-import com.srijan.springfundamentals.entities.Festival;
 import com.srijan.springfundamentals.entities.FestivalGroup;
 import com.srijan.springfundamentals.entities.Profile;
 import com.srijan.springfundamentals.entities.Service;
@@ -48,17 +47,17 @@ public class ProfileMapper {
         List<FestivalGroupInfo> groupInfos = mapToFestivalGroupInfoList(profile.getFestivalGroupList());
         profileDetail.setFestivalInfoList(groupInfos);
 
-        List<ServiceInfo> serviceInfos = mapToServiceGroupInfoList(profile.getServiceList());
+        List<ServiceInfo> serviceInfos = mapToServiceInfoList(profile.getServiceList());
         profileDetail.setServiceInfoList(serviceInfos);
 
         return profileDetail;
     }
 
-    private static List<ServiceInfo> mapToServiceGroupInfoList(List<Service> serviceList) {
+    public static List<ServiceInfo> mapToServiceInfoList(List<Service> serviceList) {
         return serviceList.stream().map(service -> ObjectMapper.map(service , ServiceInfo.class)).collect(Collectors.toList());
     }
 
-    private static List<FestivalGroupInfo> mapToFestivalGroupInfoList(List<FestivalGroup> festivalGroupList) {
+    public static List<FestivalGroupInfo> mapToFestivalGroupInfoList(List<FestivalGroup> festivalGroupList) {
         return festivalGroupList.stream().map(festivalGroup -> {
             FestivalGroupInfo festivalGroupInfo = new FestivalGroupInfo();
             festivalGroupInfo.setDescription(festivalGroup.getDescription());
