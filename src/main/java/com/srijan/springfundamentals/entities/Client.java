@@ -32,9 +32,6 @@ public class Client {
     private Date birthday;
     @Column(name = "RELATION" , nullable = false)
     private String relation;
-    @JoinColumn(name = "PROFILE_ID" ,  referencedColumnName = "ID" )
-    @ManyToOne (optional = false ,fetch =  FetchType.EAGER)
-    private Profile profile;
 
     public Client() {
 

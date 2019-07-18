@@ -32,7 +32,9 @@ public class ApplicationUser extends Auditable<ApplicationUser> {
     @Basic(optional = false)
     @Column(name = "USERNAME", nullable = false, length = 50)
     private String username;
-
+    @JoinColumn(name = "PROFILE_ID" ,  referencedColumnName = "ID" )
+    @ManyToOne (optional = false ,fetch =  FetchType.EAGER)
+    private Profile profile;
 
 
 }

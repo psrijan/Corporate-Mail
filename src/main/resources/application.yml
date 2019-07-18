@@ -29,3 +29,13 @@ logging:
 swagger:
   resourcePackage: com.srijan.springfundamentals.controller
   version: 0.0
+
+cron:
+  pattern:
+    birthday-alert: ''
+    birthday-wish: ''
+    festival-wish: ''
+
+email:
+  username: 'p.srijan08test@gmail.com'
+  password: 'pass'

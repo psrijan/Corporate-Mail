@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AlertLogRepository extends JpaRepository<AlertLog, Long> {
 
-    @Query("select count(t) from AlertLog t where t.applicationUser.id = ?1 and t.friend.id = ?2 and t.year =  ?3 and t.name = ?4")
-    long countWishLogByYear(Long appUserId, Long friendId, String year , String name);
+    @Query("select count(t) from AlertLog t where t.applicationUser.id = ?1 and t.friend.id = ?2 and t.year =  ?3 and t.alertType = ?4")
+    long countWishLogByYear(Long appUserId, Long friendId, String year , String alertType);
 
 
 

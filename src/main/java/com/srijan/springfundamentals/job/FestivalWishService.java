@@ -1,4 +1,4 @@
-package com.srijan.springfundamentals.scheduleservice;
+package com.srijan.springfundamentals.job;
 
 
 import com.srijan.springfundamentals.dto.EmailDetail;
@@ -68,7 +68,7 @@ public class FestivalWishService {
                         AlertLog wishLog = new AlertLog();
                         wishLog.setYear(DateUtil.getThisYear());
                         wishLog.setWished('Y');
-                        wishLog.setName(Occassion.FESTIVAL.toString() + "-" + festival.getCode());
+                        wishLog.setAlertType(Occassion.FESTIVAL.toString() + "-" + festival.getCode());
                         wishLog.setFriend(friend);
                         wishLog.setApplicationUser(applicationUser);
                         wishLog.setDate(new Date());

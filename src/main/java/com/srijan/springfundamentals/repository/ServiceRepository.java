@@ -10,5 +10,4 @@ import java.util.Optional;
 @Repository
 public interface ServiceRepository extends JpaRepository<Service , Long> {
 
-    List<Service> getServiceList();
 }

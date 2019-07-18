@@ -10,31 +10,31 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping(path = "/client")
+//@RestController
+//@RequestMapping(path = "/client")
 public class ClientController {
 
     @Autowired
     private ClientService clientService;
 
-
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ClientDetail> getClientList() {
-        return null;
-    }
-
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public GenericResponse addNewClient() {
-        return null;
-    }
-
-    @PutMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public GenericResponse updateClient() {
-        return null;
-    }
-
-    @DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public GenericResponse deleteClient() {
-        return  null;
-    }
+//
+//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+//    public List<ClientDetail> getClientList() {
+//        return null;
+//    }
+//
+//    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public GenericResponse addNewClient() {
+//        return null;
+//    }
+//
+//    @PutMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public GenericResponse updateClient() {
+//        return null;
+//    }
+//
+//    @DeleteMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public GenericResponse deleteClient() {
+//        return  null;
+//    }
 }

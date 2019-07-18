@@ -12,10 +12,10 @@ import java.util.Optional;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
-    @Query("select t from client t where t.active <> 'D' ")
+    @Query("select t from Client t where t.active <> 'D' ")
     List<Client> listAllClients();
 
-    @Query("select t from client t where t.active <>'D' and t.id= :id")
+    @Query("select t from Client t where t.active <>'D' and t.id= :id")
     Optional<Client> getClientById(@Param("id") Long id);
 
 

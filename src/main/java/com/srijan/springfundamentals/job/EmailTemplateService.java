@@ -1,4 +1,4 @@
-package com.srijan.springfundamentals.scheduleservice;
+package com.srijan.springfundamentals.job;
 
 import com.srijan.springfundamentals.dto.Mail;
 import com.srijan.springfundamentals.dto.Occassion;

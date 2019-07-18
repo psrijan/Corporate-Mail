@@ -18,8 +18,8 @@ public class AlertLog {
     @Column(name = "ID", nullable = false, precision = 22)
     private Long id;
     @Basic(optional = false)
-    @Column(name = "NAME", nullable = false, length = 200)
-    private String name;
+    @Column(name = "ALERT_TYPE", nullable = false, length = 200)
+    private String alertType;
     @Column(name="DATE" , nullable = false)
     private Date date;
     @Basic(optional = false)
@@ -33,5 +33,7 @@ public class AlertLog {
     private Client friend;
     @Column(name = "YEAR" , nullable = false)
     private String year;
+    @Column(name="REMARKS")
+    private String remarks;
 
 }

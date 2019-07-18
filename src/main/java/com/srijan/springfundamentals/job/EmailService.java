@@ -1,4 +1,4 @@
-package com.srijan.springfundamentals.scheduleservice;
+package com.srijan.springfundamentals.job;
 
 
 import com.srijan.springfundamentals.dto.EmailDetail;
@@ -59,7 +59,7 @@ public class EmailService {
             Transport.send(msg);
             return true;
         } catch (Exception ex) {
-            ex.printStackTrace();
+            log.error("Exception: " , ex );
             return false;
         }
     }

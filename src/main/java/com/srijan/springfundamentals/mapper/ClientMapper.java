@@ -16,8 +16,6 @@ public class ClientMapper {
 
         List<ClientDetail> clientDetails = clientList.stream().map(client -> {
             ClientDetail clientDetail = ObjectMapper.map(client , ClientDetail.class);
-            clientDetail.setProfileId(client.getProfile().getId());
-            clientDetail.setProfileName(client.getProfile().getName());
             return clientDetail;
         }).collect(Collectors.toList());
 
@@ -27,13 +25,11 @@ public class ClientMapper {
     public static Client mapToClient(AddClientRequest addClientRequest) {
 
         Client client = ObjectMapper.map(addClientRequest , Client.class);
-        client.setProfile(new Profile(addClientRequest.getProfileId()));
         return client;
 
     }
 
     public static void mapToClient(UpdateClientRequest updateClientRequest , Client client) {
          ObjectMapper.mapExcludingNulls(updateClientRequest , client);
-         client.setProfile(new Profile(updateClientRequest.getProfileId()));
     }
 }

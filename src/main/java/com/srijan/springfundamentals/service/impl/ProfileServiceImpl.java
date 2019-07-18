@@ -69,7 +69,7 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public List<ServiceInfo> getAllServiceInfo() {
         List<com.srijan.springfundamentals.entities.Service> serviceList =
-                serviceRepository.getServiceList();
+                serviceRepository.findAll();
         return ProfileMapper.mapToServiceInfoList(serviceList);
     }
 
