@@ -1,4 +1,4 @@
-package com.srijan.springfundamentals.job;
+package com.srijan.springfundamentals.modules;
 
 import com.srijan.springfundamentals.dto.Mail;
 import com.srijan.springfundamentals.dto.Occassion;
@@ -21,7 +21,7 @@ public class EmailTemplateService {
 
         Template t = config.getTemplate(occassion.getTemplate());
         String html = FreeMarkerTemplateUtils.processTemplateIntoString(t, mail.getModel());
-        log.debug("Mail Template: ", html);
+        log.debug("Mail Template: {}", html);
         return html;
     }
 

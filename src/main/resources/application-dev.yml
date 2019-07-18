@@ -4,8 +4,10 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/birthday?useUnicode=true&characterEncoding=utf8
-    username: srijan
-    password: password
+    username: root
+    password: bausab1
+#    username: srijan
+#    password: password
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: MYSQL

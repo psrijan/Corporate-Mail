@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Service
 public class BirthdayWishJob extends AbstractBirthdayWishJob {
 
-    @Scheduled(fixedRate = 5000)
+//    @Scheduled(fixedRate = 5000)
     public void sendWishes() {
         List<Client> friendList = friendRepository.findAll();
         ApplicationUser applicationUser = applicationUserRepository.findById(1l).get();

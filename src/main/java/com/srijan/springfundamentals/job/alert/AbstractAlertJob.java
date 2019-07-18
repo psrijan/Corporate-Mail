@@ -4,7 +4,7 @@ import com.srijan.springfundamentals.dto.EmailDetail;
 import com.srijan.springfundamentals.dto.Occassion;
 import com.srijan.springfundamentals.entities.ApplicationUser;
 import com.srijan.springfundamentals.entities.Client;
-import com.srijan.springfundamentals.job.EmailService;
+import com.srijan.springfundamentals.modules.EmailService;
 import com.srijan.springfundamentals.others.DateUtil;
 import com.srijan.springfundamentals.repository.AlertLogRepository;
 import com.srijan.springfundamentals.repository.FriendRepository;
@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AbstractAlertJob {
+public abstract class AbstractAlertJob {
 
 
     @Autowired

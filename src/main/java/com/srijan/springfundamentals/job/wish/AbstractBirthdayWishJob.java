@@ -2,8 +2,7 @@ package com.srijan.springfundamentals.job.wish;
 
 import com.srijan.springfundamentals.dto.EmailDetail;
 import com.srijan.springfundamentals.dto.Occassion;
-import com.srijan.springfundamentals.entities.ApplicationUser;
-import com.srijan.springfundamentals.job.EmailService;
+import com.srijan.springfundamentals.modules.EmailService;
 import com.srijan.springfundamentals.others.DateUtil;
 import com.srijan.springfundamentals.repository.AlertLogRepository;
 import com.srijan.springfundamentals.repository.FestivalRepository;

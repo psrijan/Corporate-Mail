@@ -23,4 +23,22 @@ public class EmailDetailBuilder {
                 .applicationUser(applicationUser)
                 .build();
     }
+
+    public static EmailDetail buildFestivalDetail(ApplicationUser applicationUser ,
+                                                  Festival festival , Client friend) {
+        return EmailDetail.builder()
+                .senderName(applicationUser.getName())
+                .senderEmail(applicationUser.getEmailAddress())
+                .receiverName(friend.getName())
+                .receiverEmail(friend.getEmailAddress())
+                .eventUrl(festival.getLogoUrl())
+                .subject(festival.getSubject())
+                .eventName(festival.getName())
+                .eventCode(festival.getCode())
+                .occasion(Occassion.FESTIVAL)
+                .friend(friend)
+                .applicationUser(applicationUser)
+                .build();
+
+    }
 }

@@ -1,4 +1,4 @@
-package com.srijan.springfundamentals.job;
+package com.srijan.springfundamentals.modules;
 
 
 import com.srijan.springfundamentals.dto.EmailDetail;
