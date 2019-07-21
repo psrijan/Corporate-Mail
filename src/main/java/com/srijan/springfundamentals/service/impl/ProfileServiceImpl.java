@@ -17,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -39,21 +41,21 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public GenericResponse addNewProfile(AddProfileRequest addProfileRequest) {
+    public GenericResponse addNewProfile( @Valid AddProfileRequest addProfileRequest) {
         Profile profile = ProfileMapper.mapToProfile(addProfileRequest);
         profileRepository.save(profile);
         return new GenericResponse.Builder(true , "Successfully Added New Profile").build();
     }
 
     @Override
-    public GenericResponse updateExistingProfile(UpdateProfileDetail updateProfileDetail) {
+    public GenericResponse updateExistingProfile(@Valid UpdateProfileDetail updateProfileDetail) {
         Profile profile = ProfileMapper.mapUpdateToProfile(updateProfileDetail);
         profileRepository.save(profile);
         return new GenericResponse.Builder<>(true , "Successfully Added New Profile").build();
     }
 
     @Override
-    public GenericResponse deleteProfile(Long profileId) {
+    public GenericResponse deleteProfile(@Valid Long profileId) {
         Profile profile = new Profile(profileId);
         profile.setActive('D');
         profileRepository.save(profile);
@@ -70,6 +72,13 @@ public class ProfileServiceImpl implements ProfileService {
     public List<ServiceInfo> getAllServiceInfo() {
         List<com.srijan.springfundamentals.entities.Service> serviceList =
                 serviceRepository.findAll();
+        return ProfileMapper.mapToServiceInfoList(serviceList);
+    }
+
+    @Override
+    public List<ServiceInfo> getServiceInfoOnProfile(Long profileId) {
+        Profile profile = profileRepository.findById(profileId).get();
+        List<com.srijan.springfundamentals.entities.Service> serviceList = profile.getServiceList();
         return ProfileMapper.mapToServiceInfoList(serviceList);
     }
 

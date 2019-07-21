@@ -28,10 +28,17 @@ public class Client {
     @Column(name = "ACTIVE", nullable = false)
     private char active;
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="BIRTHDAY" , nullable = false)
+    @Column(name = "BIRTHDAY", nullable = false)
     private Date birthday;
-    @Column(name = "RELATION" , nullable = false)
+    @Column(name = "RELATION", nullable = false)
     private String relation;
+    @Column(name = "message", columnDefinition = "TEXT")
+    private String message;
+    @Column(name = "remarks", length = 2000)
+    private String remarks;
+    @JoinColumn(name = "APPLICATION_USER_ID", nullable = false, referencedColumnName = "ID")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private ApplicationUser applicationUser;
 
     public Client() {
 

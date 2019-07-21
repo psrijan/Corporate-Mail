@@ -4,17 +4,17 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/birthday?useUnicode=true&characterEncoding=utf8
-    username: root
-    password: bausab1
-#    username: srijan
-#    password: password
+#    username: root
+#    password: bausab1
+    username: srijan
+    password: password
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: MYSQL
     show_sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     properties:
       hibernate.cache.use_second_level_cache: false
       hibernate.cache.use_query_cache: false

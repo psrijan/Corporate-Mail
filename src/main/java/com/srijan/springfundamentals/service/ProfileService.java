@@ -24,4 +24,7 @@ public interface ProfileService {
     List<ServiceInfo> getAllServiceInfo();
 
 
+    List<ServiceInfo> getServiceInfoOnProfile(Long profileId);
+
+
 }

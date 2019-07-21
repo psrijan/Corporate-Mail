@@ -9,7 +9,7 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class EmailDetail {
+public class EmailDetail extends ModelBase{
 
     private String senderName;
     private String senderEmail;
@@ -22,8 +22,8 @@ public class EmailDetail {
     private String eventName;
     private String eventCode;
     private String eventUrl;
-
-    private Object data;
+    private String body;
+    private String dateOfBirth;
 
     private String subject;
     private Occassion occasion;

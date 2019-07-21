@@ -23,13 +23,16 @@ public class EmailService {
     @Autowired
     private EmailTemplateService emailTemplateService;
 
+    @Autowired
+    private MailMapper mailMapper;
+
     private String username = "dolletulsi@gmail.com";
     private String password = "CatalaN!29";
 
     public boolean sendIndividualMail(EmailDetail emailDetail) {
-
+        log.info("Sending Mail For: {}" , emailDetail);
         try {
-            Mail mail = MailMapper.convertToEmail(emailDetail);
+            Mail mail = mailMapper.convertToEmail(emailDetail);
 
             Properties props = new Properties();
             props.put("mail.smtp.auth", "true");
@@ -39,11 +42,11 @@ public class EmailService {
 
             Session session = Session.getInstance(props, new javax.mail.Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(username, password);
+                    return new PasswordAuthentication(emailDetail.getApplicationUser().getEmailAddress(), emailDetail.getApplicationUser().getCredential());
                 }
             });
             Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress(username, false));
+            msg.setFrom(new InternetAddress(emailDetail.getApplicationUser().getEmailAddress(), false));
 
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailDetail.getReceiverEmail()));
             msg.setSubject(mail.getMailSubject());

@@ -32,6 +32,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public GenericResponse addNewClient(AddClientRequest addClientRequest) {
         Client client = ClientMapper.mapToClient(addClientRequest);
+        client.setActive('Y');
         clientRepository.save(client);
         return new GenericResponse.Builder(true , "Successfully added new client").build();
     }

@@ -4,6 +4,7 @@ import com.srijan.springfundamentals.dto.request.AddProfileRequest;
 import com.srijan.springfundamentals.dto.request.UpdateProfileRequest;
 import com.srijan.springfundamentals.dto.response.GenericResponse;
 import com.srijan.springfundamentals.dto.response.ProfileDetail;
+import com.srijan.springfundamentals.dto.response.ServiceInfo;
 import com.srijan.springfundamentals.dto.server.UpdateProfileDetail;
 import com.srijan.springfundamentals.service.ProfileService;
 import com.srijan.springfundamentals.util.ObjectMapper;
@@ -13,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Slf4j
@@ -37,7 +39,7 @@ public class ProfileController {
     }
 
     @PutMapping(path = "/{profileId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public GenericResponse updateProfile(@RequestBody @Valid UpdateProfileRequest updateProfileRequest, @PathVariable("profileId") Long profileId) {
+    public GenericResponse updateProfile(@RequestBody @Valid UpdateProfileRequest updateProfileRequest, @PathVariable("profileId")  @NotNull @Valid Long profileId) {
         log.info("Entering Update Profile Api...");
         UpdateProfileDetail profileDetail = ObjectMapper.map(updateProfileRequest, UpdateProfileDetail.class);
         profileDetail.setId(profileId);
@@ -46,9 +48,16 @@ public class ProfileController {
     }
 
     @DeleteMapping(path = "/{profileId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public GenericResponse deleteProfile(@PathVariable("profileId") Long profileId) {
+    public GenericResponse deleteProfile(@PathVariable("profileId") @Valid @NotNull Long profileId) {
         log.info("Entering Delete Api...");
         GenericResponse response = profileService.deleteProfile(profileId);
         return response;
     }
+
+    @GetMapping(path = "/service/{profileId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ServiceInfo> serviceDetailOnProfileId(@Valid @PathVariable("profileId") @NotNull Long profileId) {
+        log.info("Entering Api to get Service Detail based on profile...");
+        return profileService.getAllServiceInfo();
+    }
+
 }

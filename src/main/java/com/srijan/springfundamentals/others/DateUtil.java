@@ -1,6 +1,7 @@
 package com.srijan.springfundamentals.others;
 
 import java.lang.reflect.Array;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -11,7 +12,14 @@ public class DateUtil {
 
     private static final String months = "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec";
 
-    public static boolean checkDate(Date birthday) {
+    public static final String STANDARD = "dd-MM-yyyy";
+
+    public static String formatDateToString(Date date , String pattern ) {
+        DateFormat dateFormat = new SimpleDateFormat(pattern);
+        return dateFormat.format(date);
+    }
+
+    public static boolean checkIsBirthday(Date birthday) {
         Date todaysDate = new Date();
 
         Calendar calendar = Calendar.getInstance();
@@ -64,6 +72,9 @@ public class DateUtil {
         List<String> monthList = Arrays.asList(months.split(","));
         return stringBuilder.append(monthList.get(month)).toString();
     }
+
+
+
 
 
 }

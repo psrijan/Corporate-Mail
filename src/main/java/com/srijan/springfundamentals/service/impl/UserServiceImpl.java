@@ -7,6 +7,7 @@ import com.srijan.springfundamentals.dto.response.GenericResponse;
 import com.srijan.springfundamentals.dto.response.ApplicationUserDetail;
 import com.srijan.springfundamentals.dto.server.ChangeUserStatus;
 import com.srijan.springfundamentals.entities.ApplicationUser;
+import com.srijan.springfundamentals.entities.Profile;
 import com.srijan.springfundamentals.mapper.UserMapper;
 import com.srijan.springfundamentals.provider.UserSessionFactory;
 import com.srijan.springfundamentals.repository.UserRepository;
@@ -60,9 +61,10 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public GenericResponse addNewUser(AddUserRequest addUserRequest) {
-//        applicationUserValidator.validateNewUser(addUserRequest, userSessionFactory.getAuthenticatedUser());
         String password = PasswordUtil.getRandomPassword();
         ApplicationUser user = UserMapper.mapToNewUser(addUserRequest, passwordEncoder.encode(password));
+        user.setActive('Y');
+        user.setProfile(new Profile(addUserRequest.getProfileId()));
         userRepository.save(user);
         return new GenericResponse.Builder(true, "Successfully created Application User").build();
     }

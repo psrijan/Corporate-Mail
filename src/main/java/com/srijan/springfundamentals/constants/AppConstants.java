@@ -1,24 +1,26 @@
 package com.srijan.springfundamentals.constants;
 
 public class AppConstants {
-    public class MailConstants {
-        public static final String NAME = "name";
-        public static final String SUBJECT_TAG = "subject";
-        public static final String LOGO = "appLogo";
-        public static final String APPLICATION_NAME = "appName";
-        public static final String THEME_COLOR = "themeColor";
-        public static final String DATE = "date";
-        public static final String SENDER_NAME = "senderName";
-        public static final String EVENT_NAME = "festivalName";
-        public static final String BIRTHDAY_OF = "birthdayOf";
+    public interface MailConstants {
+        String NAME = "name";
+        String SUBJECT_TAG = "subject";
+        String LOGO = "appLogo";
+        String APPLICATION_NAME = "appName";
+        String THEME_COLOR = "themeColor";
+        String DATE = "date";
+        String SENDER_NAME = "senderName";
+        String EVENT_NAME = "festivalName";
+        String BIRTHDAY_OF = "birthdayOf";
+        String CUSTOMIZED_BODY = "customBody";
+        String EMAIL = "email";
+        String RELATION = "relation";
+        String REMARKS = "remarks";
+        String DATE_OF_BIRTH= "dateOfBirth";
     }
 
     public interface SecurityConstants {
-        long EXPIRATION_TIME = 864_000_000; // 10 days
         String TOKEN_PREFIX = "Bearer ";
         String SECURITY_HEADER_STRING = "Authorization";
-        String QR_PREFIX = "https://chart.googleapis.com/chart?chs=200x200&chld=M%%7C0&cht=qr&chl=";
-        String APP_NAME = "Topup Admin Server";
         String AUTH_URL_REGEX = ".*/auth[/]{0,1}";
         String TOTP_REGEX = ".*/auth/verify/2fa[/]{0,1}";
     }

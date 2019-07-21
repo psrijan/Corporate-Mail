@@ -2,9 +2,9 @@ package com.srijan.springfundamentals.dto;
 
 public enum Occassion {
 
-    BIRTHDAY("email-alert.ftl"),
-    FESTIVAL("festival.ftl"),
-    BIRTHDAYALERT("self-birthday-alert.ftl");
+    BIRTHDAY("birthday-wish.ftl"),
+    FESTIVAL("festival-wish.ftl"),
+    BIRTHDAYALERT("birthday-alert.ftl");
     private final String template;
 
     Occassion(String template){

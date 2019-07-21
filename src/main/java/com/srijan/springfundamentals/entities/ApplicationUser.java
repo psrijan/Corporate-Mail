@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "APPLICATION_USER")
@@ -35,6 +36,15 @@ public class ApplicationUser extends Auditable<ApplicationUser> {
     @JoinColumn(name = "PROFILE_ID" ,  referencedColumnName = "ID" )
     @ManyToOne (optional = false ,fetch =  FetchType.EAGER)
     private Profile profile;
+    @OneToMany(mappedBy = "applicationUser" ,fetch = FetchType.EAGER)
+    private List<Client> clientList;
+    @Column(name = "credential" , nullable = false)
+    private String credential;
 
+    public ApplicationUser() {
+    }
 
+    public ApplicationUser(Long id) {
+        this.id = id;
+    }
 }

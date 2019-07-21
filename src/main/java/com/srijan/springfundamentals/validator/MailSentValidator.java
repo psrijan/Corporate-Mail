@@ -15,11 +15,11 @@ public class MailSentValidator {
     @Autowired
     private AlertLogRepository alertLogRepository;
 
-    public boolean isEmailSent(EmailDetail emailDetail) {
+    public boolean isFestivalEmailSent(EmailDetail emailDetail , String alertType) {
 
-        long count = alertLogRepository.countWishLogByYear(emailDetail.getApplicationUser().getId(),
+        long count = alertLogRepository.countFestivalWishLogByYear(emailDetail.getApplicationUser().getId(),
                 emailDetail.getFriend().getId(),
-                DateUtil.getThisYear(), Occassion.BIRTHDAYALERT.toString());
+                DateUtil.getThisYear(), alertType);
 
         return count > 0;
 

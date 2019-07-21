@@ -2,6 +2,7 @@ package com.srijan.springfundamentals.job.alert;
 
 import com.srijan.springfundamentals.dto.EmailDetail;
 import com.srijan.springfundamentals.dto.Occassion;
+import com.srijan.springfundamentals.entities.AlertLog;
 import com.srijan.springfundamentals.entities.ApplicationUser;
 import com.srijan.springfundamentals.entities.Client;
 import com.srijan.springfundamentals.modules.EmailService;
@@ -11,6 +12,7 @@ import com.srijan.springfundamentals.repository.FriendRepository;
 import com.srijan.springfundamentals.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,29 +32,10 @@ public abstract class AbstractAlertJob {
     protected AlertLogRepository alertLogRepository;
 
 
-    protected List<Client> birthdayClientList() {
+    protected List<Client> birthdayClientList(List<Client> friendList) {
 
-        List<Client> friendList = friendRepository.findAll();
         List<Client> tomorrowBirthdayFriendList = friendList.stream().filter(friend -> DateUtil.checkBirthdayTomorrow(friend.getBirthday())).collect(Collectors.toList());
         return tomorrowBirthdayFriendList;
-
-    }
-
-    protected EmailDetail buildEmailDetail(ApplicationUser applicationUser, Client friend) {
-
-        return EmailDetail.builder()
-                .senderEmail(applicationUser.getEmailAddress())
-                .senderName(applicationUser.getName())
-                .receiverEmail(applicationUser.getEmailAddress())
-                .receiverName(applicationUser.getName())
-                .eventCode(Occassion.BIRTHDAYALERT.toString())
-                .eventName("Birthday Alert")
-                .data(friend.getName())
-                .eventUrl(null)
-                .occasion(Occassion.BIRTHDAYALERT)
-                .friend(friend)
-                .applicationUser(applicationUser)
-                .build();
 
     }
 
@@ -64,5 +47,17 @@ public abstract class AbstractAlertJob {
 
         return count > 0;
 
+    }
+
+
+    protected void persistAlertSent(EmailDetail emailDetail) {
+        AlertLog alertLog = new AlertLog();
+        alertLog.setApplicationUser(emailDetail.getApplicationUser());
+        alertLog.setFriend(emailDetail.getFriend());
+        alertLog.setAlertType(Occassion.BIRTHDAYALERT.toString());
+        alertLog.setDate(new Date());
+        alertLog.setWished('Y');
+        alertLog.setYear(DateUtil.getThisYear());
+        alertLogRepository.save(alertLog);
     }
 }

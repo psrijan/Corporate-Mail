@@ -27,7 +27,7 @@ public class FestivalWishJob extends FestivalJob {
     @Autowired
     private ApplicationDAO applicationDAO;
 
-    @Scheduled(fixedRate = 5000)
+//    @Scheduled(cron = "${cron.pattern.festival-wish}")
     public void wishPeopleFestival() {
 
         ApplicationUser applicationUser = applicationUserRepository.findById(1l).get();
@@ -39,7 +39,7 @@ public class FestivalWishJob extends FestivalJob {
             friends.forEach(friend -> {
                 if (!isEmailSent(applicationUser, friend , festival)) {
                     EmailDetail emailDetail = EmailDetailBuilder.buildFestivalDetail(applicationUser, festival, friend);
-                    boolean isEmailSent = mailSentValidator.isEmailSent(emailDetail);
+                    boolean isEmailSent = mailSentValidator.isFestivalEmailSent(emailDetail , Occassion.FESTIVAL.toString());
                     if(!isEmailSent) {
                         boolean newMailSent = emailService.sendIndividualMail(emailDetail);
                         if (newMailSent) {

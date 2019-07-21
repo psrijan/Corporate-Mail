@@ -32,9 +32,9 @@ swagger:
 
 cron:
   pattern:
-    birthday-alert: '0 0 * * * *'
-    birthday-wish: '0 15 * * * *'
-    festival-wish: '0 30 * * * *'
+    birthday-alert: '*/10 * * * * *'
+    birthday-wish: '*/10 * * * * *'
+    festival-wish: '0 * * * * *'
 
 email:
   username: 'p.srijan08test@gmail.com'

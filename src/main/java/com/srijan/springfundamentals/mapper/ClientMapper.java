@@ -3,6 +3,7 @@ package com.srijan.springfundamentals.mapper;
 import com.srijan.springfundamentals.dto.request.client.AddClientRequest;
 import com.srijan.springfundamentals.dto.request.client.UpdateClientRequest;
 import com.srijan.springfundamentals.dto.response.ClientDetail;
+import com.srijan.springfundamentals.entities.ApplicationUser;
 import com.srijan.springfundamentals.entities.Client;
 import com.srijan.springfundamentals.entities.Profile;
 import com.srijan.springfundamentals.util.ObjectMapper;
@@ -25,11 +26,13 @@ public class ClientMapper {
     public static Client mapToClient(AddClientRequest addClientRequest) {
 
         Client client = ObjectMapper.map(addClientRequest , Client.class);
+        client.setApplicationUser(new ApplicationUser(addClientRequest.getApplicationUserId()));
         return client;
 
     }
 
     public static void mapToClient(UpdateClientRequest updateClientRequest , Client client) {
          ObjectMapper.mapExcludingNulls(updateClientRequest , client);
+         client.setApplicationUser(new ApplicationUser(updateClientRequest.getApplicationUserId()));
     }
 }

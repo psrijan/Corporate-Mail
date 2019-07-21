@@ -4,6 +4,8 @@ import com.srijan.springfundamentals.constants.AppConstants;
 import com.srijan.springfundamentals.dto.EmailDetail;
 import com.srijan.springfundamentals.dto.Mail;
 import com.srijan.springfundamentals.dto.Occassion;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -11,40 +13,79 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
+@Component
 public class MailMapper {
-    public static Mail convertToEmail(EmailDetail emailDetail) {
 
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private static String applicationName = "Friend Wish";
 
+    public Mail convertToEmail(EmailDetail emailDetail) {
 
         Mail mail = new Mail();
         mail.setMailFrom(emailDetail.getSenderEmail());
         mail.setMailTo(emailDetail.getReceiverEmail());
-        mail.setMailSubject(emailDetail.getEventName() + " for " + emailDetail.getData());
+        mail.setMailSubject(emailDetail.getEventName() + " for " + emailDetail.getReceiverName());
 
         Map<String, Object> model = new HashMap<>();
 
-        model.put(AppConstants.MailConstants.DATE, sdf.format(new Date()));
-        model.put(AppConstants.MailConstants.LOGO, emailDetail.getEventUrl());
-        model.put(AppConstants.MailConstants.NAME, emailDetail.getReceiverName());
-
-        if (emailDetail.getOccasion() == Occassion.BIRTHDAYALERT) {
-            model.put(AppConstants.MailConstants.SUBJECT_TAG, emailDetail.getSubject() + " " + emailDetail.getData());
-            model.put(AppConstants.MailConstants.APPLICATION_NAME, "Client Wish");
-            model.put(AppConstants.MailConstants.SENDER_NAME, "Birthday Alert Server");
-            model.put(AppConstants.MailConstants.EVENT_NAME, emailDetail.getEventName());
-            model.put(AppConstants.MailConstants.BIRTHDAY_OF, emailDetail.getData());
-            model.put(AppConstants.MailConstants.THEME_COLOR, "#fafa21");
+        if (emailDetail.getOccasion().equals(Occassion.BIRTHDAYALERT)){
+            model = buildBirthdayAlertModel(emailDetail);
+        } else if(emailDetail.getOccasion().equals(Occassion.BIRTHDAY)){
+            model = buildBirthdayWishModel(emailDetail);
         } else {
-            model.put(AppConstants.MailConstants.SUBJECT_TAG, emailDetail.getSubject() + " " + emailDetail.getReceiverName() + "!!!");
-            model.put(AppConstants.MailConstants.APPLICATION_NAME, "Client Wish");
-            model.put(AppConstants.MailConstants.THEME_COLOR, "#fa123f");
-            model.put(AppConstants.MailConstants.DATE, sdf.format(new Date()));
-            model.put(AppConstants.MailConstants.EVENT_NAME, emailDetail.getEventName());
-            model.put(AppConstants.MailConstants.SENDER_NAME, emailDetail.getSenderName());
+            model = buildFestivalWishModel(emailDetail);
         }
         mail.setModel(model);
         return mail;
     }
 
+
+    private Map<String, Object> buildBirthdayAlertModel(EmailDetail emailDetail) {
+        Map<String, Object> model = new HashMap<>();
+        model.put(AppConstants.MailConstants.DATE, DateUtil.formatDateToString(new Date() , DateUtil.STANDARD));
+        model.put(AppConstants.MailConstants.NAME, emailDetail.getReceiverName());
+        model.put(AppConstants.MailConstants.SUBJECT_TAG, emailDetail.getSubject());
+        model.put(AppConstants.MailConstants.BIRTHDAY_OF, emailDetail.getFriend().getName());
+        model.put(AppConstants.MailConstants.EMAIL, emailDetail.getFriend().getEmailAddress());
+        model.put(AppConstants.MailConstants.RELATION, emailDetail.getFriend().getRelation());
+        model.put(AppConstants.MailConstants.REMARKS, emailDetail.getFriend().getRemarks());
+        model.put(AppConstants.MailConstants.DATE_OF_BIRTH, emailDetail.getDateOfBirth());
+        model.put(AppConstants.MailConstants.APPLICATION_NAME , applicationName);
+        return model;
+    }
+
+    private Map<String, Object> buildBirthdayWishModel(EmailDetail emailDetail) {
+
+        Map<String, Object> model = new HashMap<>();
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        model.put(AppConstants.MailConstants.DATE, DateUtil.formatDateToString(new Date() , DateUtil.STANDARD));
+        model.put(AppConstants.MailConstants.LOGO, emailDetail.getEventUrl());
+        model.put(AppConstants.MailConstants.NAME, emailDetail.getReceiverName());
+        model.put(AppConstants.MailConstants.SUBJECT_TAG, emailDetail.getSubject());
+        model.put(AppConstants.MailConstants.APPLICATION_NAME, applicationName);
+        model.put(AppConstants.MailConstants.THEME_COLOR, "#fa123f");
+        model.put(AppConstants.MailConstants.DATE, sdf.format(new Date()));
+        model.put(AppConstants.MailConstants.EVENT_NAME, emailDetail.getEventName());
+        model.put(AppConstants.MailConstants.SENDER_NAME, emailDetail.getSenderName());
+        model.put(AppConstants.MailConstants.CUSTOMIZED_BODY, emailDetail.getBody());
+        model.put(AppConstants.MailConstants.BIRTHDAY_OF, emailDetail.getFriend().getName());
+        return model;
+    }
+
+
+    private Map<String, Object> buildFestivalWishModel(EmailDetail emailDetail) {
+        Map<String, Object> model = new HashMap<>();
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        model.put(AppConstants.MailConstants.DATE, DateUtil.formatDateToString(new Date() , DateUtil.STANDARD));
+        model.put(AppConstants.MailConstants.LOGO, emailDetail.getEventUrl());
+        model.put(AppConstants.MailConstants.NAME, emailDetail.getReceiverName());
+        model.put(AppConstants.MailConstants.SUBJECT_TAG, emailDetail.getSubject());
+        model.put(AppConstants.MailConstants.APPLICATION_NAME, applicationName);
+        model.put(AppConstants.MailConstants.THEME_COLOR, "#fa123f");
+        model.put(AppConstants.MailConstants.DATE, sdf.format(new Date()));
+        model.put(AppConstants.MailConstants.EVENT_NAME, emailDetail.getEventName());
+        model.put(AppConstants.MailConstants.SENDER_NAME, emailDetail.getSenderName());
+        return model;
+
+    }
 }

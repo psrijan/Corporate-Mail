@@ -17,4 +17,5 @@ public class ClientDetail extends ModelBase {
     private String relation;
     private Long profileId;
     private String profileName;
+    private Long applicationUserId;
 }
