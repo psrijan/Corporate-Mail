@@ -24,25 +24,26 @@ public class MailMapper {
         Mail mail = new Mail();
         mail.setMailFrom(emailDetail.getSenderEmail());
         mail.setMailTo(emailDetail.getReceiverEmail());
-        mail.setMailSubject(emailDetail.getEventName() + " for " + emailDetail.getReceiverName());
+        mail.setMailSubject(emailDetail.getEventName());
 
-        Map<String, Object> model = new HashMap<>();
 
-        if (emailDetail.getOccasion().equals(Occassion.BIRTHDAYALERT)){
-            model = buildBirthdayAlertModel(emailDetail);
-        } else if(emailDetail.getOccasion().equals(Occassion.BIRTHDAY)){
-            model = buildBirthdayWishModel(emailDetail);
+        if (emailDetail.getOccasion().equals(Occassion.BIRTHDAYALERT)) {
+            buildBirthdayAlertModel(emailDetail, mail);
+        } else if (emailDetail.getOccasion().equals(Occassion.BIRTHDAY)) {
+            buildBirthdayWishModel(emailDetail , mail);
         } else {
-            model = buildFestivalWishModel(emailDetail);
+            buildFestivalWishModel(emailDetail , mail);
         }
-        mail.setModel(model);
         return mail;
     }
 
 
-    private Map<String, Object> buildBirthdayAlertModel(EmailDetail emailDetail) {
+    private void buildBirthdayAlertModel(EmailDetail emailDetail, Mail mail) {
+
+        mail.setMailSubject("Birthday Alert For " + emailDetail.getFriend().getName());
+
         Map<String, Object> model = new HashMap<>();
-        model.put(AppConstants.MailConstants.DATE, DateUtil.formatDateToString(new Date() , DateUtil.STANDARD));
+        model.put(AppConstants.MailConstants.DATE, DateUtil.formatDateToString(new Date(), DateUtil.STANDARD));
         model.put(AppConstants.MailConstants.NAME, emailDetail.getReceiverName());
         model.put(AppConstants.MailConstants.SUBJECT_TAG, emailDetail.getSubject());
         model.put(AppConstants.MailConstants.BIRTHDAY_OF, emailDetail.getFriend().getName());
@@ -50,15 +51,17 @@ public class MailMapper {
         model.put(AppConstants.MailConstants.RELATION, emailDetail.getFriend().getRelation());
         model.put(AppConstants.MailConstants.REMARKS, emailDetail.getFriend().getRemarks());
         model.put(AppConstants.MailConstants.DATE_OF_BIRTH, emailDetail.getDateOfBirth());
-        model.put(AppConstants.MailConstants.APPLICATION_NAME , applicationName);
-        return model;
+        model.put(AppConstants.MailConstants.APPLICATION_NAME, applicationName);
+        mail.setModel(model);
     }
 
-    private Map<String, Object> buildBirthdayWishModel(EmailDetail emailDetail) {
+    private void buildBirthdayWishModel(EmailDetail emailDetail, Mail mail) {
+
+        mail.setMailSubject("Happy Birthday " + emailDetail.getFriend().getName());
 
         Map<String, Object> model = new HashMap<>();
         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        model.put(AppConstants.MailConstants.DATE, DateUtil.formatDateToString(new Date() , DateUtil.STANDARD));
+        model.put(AppConstants.MailConstants.DATE, DateUtil.formatDateToString(new Date(), DateUtil.STANDARD));
         model.put(AppConstants.MailConstants.LOGO, emailDetail.getEventUrl());
         model.put(AppConstants.MailConstants.NAME, emailDetail.getReceiverName());
         model.put(AppConstants.MailConstants.SUBJECT_TAG, emailDetail.getSubject());
@@ -69,14 +72,17 @@ public class MailMapper {
         model.put(AppConstants.MailConstants.SENDER_NAME, emailDetail.getSenderName());
         model.put(AppConstants.MailConstants.CUSTOMIZED_BODY, emailDetail.getBody());
         model.put(AppConstants.MailConstants.BIRTHDAY_OF, emailDetail.getFriend().getName());
-        return model;
+        mail.setModel(model);
     }
 
 
-    private Map<String, Object> buildFestivalWishModel(EmailDetail emailDetail) {
+    private void buildFestivalWishModel(EmailDetail emailDetail, Mail mail) {
+
+        mail.setMailSubject("Happy " + emailDetail.getEventName());
+
         Map<String, Object> model = new HashMap<>();
         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        model.put(AppConstants.MailConstants.DATE, DateUtil.formatDateToString(new Date() , DateUtil.STANDARD));
+        model.put(AppConstants.MailConstants.DATE, DateUtil.formatDateToString(new Date(), DateUtil.STANDARD));
         model.put(AppConstants.MailConstants.LOGO, emailDetail.getEventUrl());
         model.put(AppConstants.MailConstants.NAME, emailDetail.getReceiverName());
         model.put(AppConstants.MailConstants.SUBJECT_TAG, emailDetail.getSubject());
@@ -85,7 +91,8 @@ public class MailMapper {
         model.put(AppConstants.MailConstants.DATE, sdf.format(new Date()));
         model.put(AppConstants.MailConstants.EVENT_NAME, emailDetail.getEventName());
         model.put(AppConstants.MailConstants.SENDER_NAME, emailDetail.getSenderName());
-        return model;
+
+        mail.setModel(model);
 
     }
 }
